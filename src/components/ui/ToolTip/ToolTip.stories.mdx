@@ -1,0 +1,25 @@
+import ToolTip from './index';
+import { ArgsTable, Description, Meta, Story, } from '@storybook/addon-docs/blocks';
+
+<Meta title="General/ToolTip" component={ToolTip}
+      argTypes={{
+        label: "Assigned completion is the percent of completion the  member has achieve in total of all assigned pieces"
+      }} />
+
+# ToolTip
+
+---
+
+<Description>ToolTip</Description>
+
+<Story name="default"
+       argsTypes={{
+         label: "Assigned completion is the percent of completion the  member has achieve in total of all assigned pieces"
+       }}
+       args={{ label: "Assigned completion is the percent of completion the  member has achieve in total of all assigned pieces" }}>
+  {ToolTip.bind({})}
+</Story>
+
+
+### Props
+<ArgsTable of={ToolTip} />

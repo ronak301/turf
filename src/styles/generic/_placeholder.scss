@@ -1,0 +1,19 @@
+::-webkit-input-placeholder {
+  color: map-get($colors, gamma);
+  opacity: 1;
+}
+
+:-moz-placeholder {
+  color: map-get($colors, gamma);
+  opacity: 1;
+}
+
+::-moz-placeholder {
+  color: map-get($colors, gamma);
+  opacity: 1;
+}
+
+:-ms-input-placeholder {
+  color: map-get($colors, gamma);
+  opacity: 1;
+}

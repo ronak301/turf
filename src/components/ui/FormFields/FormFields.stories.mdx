@@ -1,0 +1,80 @@
+import { Flex } from '@chakra-ui/core';
+import { Meta, Story } from '@storybook/addon-docs/blocks';
+import FormFields from './FormFields';
+import Typography from '../Typography';
+import { Box } from '../Box';
+
+<Meta title="Components/FormFields" />
+
+# Form-Fields
+---
+
+#### Normal use-case
+
+<Story name="default"><FormFields fields={
+  [
+    { name: 'name', type: 'input', label: 'Name', dataCy: 'form.name', params: { placeholder: 'Enter name' } },
+    { name: 'email', type: 'input', label: 'Email ', dataCy: 'form.email', params: { placeholder: 'Enter email' } },
+    {
+      name: 'group', type: 'select', label: 'Group ', dataCy: 'form.group', params: {
+        placeholder: 'Select...', options: [
+          { id: 'option-1', label: 'Option-1' },
+          { id: 'option-2', label: 'Option-2' },
+        ]
+      }
+    }
+  ]
+}>
+  <Flex flexDirection="row" justifyContent="space-between">
+    <FormFields.Item fieldName="name" />
+    <FormFields.Item fieldName="email" />
+    <FormFields.Item fieldName="group" />
+  </Flex>
+  <FormFields.Data>{({ data = {} }) => {
+    return <Box flexDirection="column">
+      <Typography>Name : {data.name}</Typography>
+      <Typography>Email : {data.email}</Typography>
+      <Typography>Group : {data.group}</Typography>
+    </Box>
+  }}</FormFields.Data>
+</FormFields></Story>
+
+
+#### Advance rendering
+
+<Story name="Advance Rendering"><FormFields fields={
+  [
+    { name: 'name', type: 'input', label: 'Name', dataCy: 'form.name', params: { placeholder: 'Enter name' } },
+    { name: 'email', type: 'input', label: 'Email ', dataCy: 'form.email', params: { placeholder: 'Enter email' } },
+    {
+      name: 'group', type: 'select', label: 'Group ', dataCy: 'form.group', params: {
+        placeholder: 'Select...', options: [
+          { id: 'option-1', label: 'Option-1' },
+          { id: 'option-2', label: 'Option-2' },
+        ]
+      }
+    }
+  ]
+}>
+  <Flex flexDirection="column" justifyContent="space-between">
+    <Typography variant="heading2">Information</Typography>
+    <Flex>
+      <FormFields.Item fieldName="name" />
+    </Flex>
+    <Typography variant="heading2">Additional details</Typography>
+    <Box>
+      <Flex>
+        <FormFields.Item fieldName="email" />
+        <FormFields.Item fieldName="group" />
+      </Flex>
+    </Box>
+  </Flex>
+  <FormFields.Data>{({ data = {} }) => {
+    return <Box flexDirection="column">
+      <Typography>Name : {data.name}</Typography>
+      <Typography>Email : {data.email}</Typography>
+      <Typography>Group : {data.group}</Typography>
+    </Box>
+  }}</FormFields.Data>
+</FormFields>
+</Story>

@@ -1,0 +1,7 @@
+.slide-pane__overlay.ReactModal__Overlay--after-open {
+  background-color: rgba(0,0,0,0.8);
+}
+
+.slide-pane__overlay {
+  z-index: 1000;
+}

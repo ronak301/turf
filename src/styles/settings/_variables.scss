@@ -1,0 +1,159 @@
+/**
+ * Colors
+ *
+ * Naming convention of our color keys has
+ * some rules. What we want to avoid is to
+ * name colors by its color. E.g. to name
+ * #000000 'black' and later down the road the
+ * customer wants to change all black colors
+ * to red. Then the name is missleading and
+ * just wrong. You can use:
+ * 
+ * - primary, secondary, tertiary and so on...
+ *   - Use this for brand color and other hierarchy colors.
+ *   - Has (often) great impact from the customer graphic profile.
+ *   - Most often not more than three colors.
+ * 
+ * - alpha, beta, gamma and so on...
+ *   - Greek alphabet.
+ *   - Here's "the rest" of the colors.
+ *   - Projects often has a great amount of gray colors,
+ *     here's the place for them.
+ */
+$colors: (
+  primary: purple,
+  alpha: black,
+  beta: white,
+  gamma: red
+);
+
+// Spacings
+$spacing-unit: 20px;
+$spacings: (
+  xs: $spacing-unit * 0.5,
+  sm: $spacing-unit * 1,
+  md: $spacing-unit * 1.5,
+  lg: $spacing-unit * 2,
+  xl: $spacing-unit * 2.5,
+  2xl: $spacing-unit * 3
+);
+
+// Breakpoints
+$breakpoints: (
+  xs: 480px,
+  sm: 768px,
+  md: 992px,
+  lg: 1200px,
+  navbar: 700px
+);
+
+// Font families
+$font-stack: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+$font-families: (
+  arial: (Arial, $font-stack)
+);
+
+/**
+ * Font styles
+ *
+ * Append reusable font styles here. The key of every
+ * font style is a city, this way the key will never
+ * be a problem if styling changes. A common problem
+ * is that a style is named "18px" because the font
+ * size is 18px, and later down the road someone
+ * decides to increase the font size to 19px, then
+ * the naming is incorrect and missleading.
+ *
+ * Include it with @include get-font-styles($type),
+ * and as you can see it respects our $breakpoints.
+ * Breakpoint 'root' renders without a @media query.
+ * If you don't pass a map it will be applied as
+ * 'root' styling.
+ */
+$font-styles: (
+  kramfors: (
+    font-size: 18px,
+    font-weight: 400,
+    color: map-get($colors, alpha)
+  ),
+  tokyo: (
+    font-size: 40px,
+    // Just to showcase breakpoints
+    font-weight: (
+      root: 100,
+      xs: 400,
+      navbar: 700
+    )
+  ),
+  nairobi: ( font-size: 35px ),
+  berlin: ( font-size: 30px ),
+  moscow: ( font-size: 25px ),
+  rio: ( font-size: 20px ),
+  denver: ( font-size: 15px ),
+  helsinki: ( font-size: 16px ),
+  oslo: ( font-size: 14px )
+);
+
+// Heading styles
+$heading-styles: (
+  h1: tokyo,
+  h2: nairobi,
+  h3: moscow,
+  h4: rio,
+  h5: denver,
+  h6: helsinki
+);
+
+// Line heights
+$line-heights: (
+  base: 1.5
+);
+
+// Durations
+$durations: (
+  fast: .25s,
+  medium: .5s,
+  slow: .75s,
+  sloth: 2.5s
+);
+
+// Header heights
+$header-heights: (
+  navbar-up: 50px,
+  navbar-down: 50px
+);
+
+// Container paddings
+$container-paddings: (
+  root: map-get($spacings, md),
+  lg: map-get($spacings, lg)
+);
+
+// Easing curves
+$easings: (
+  in-sine: cubic-bezier(0.47, 0, 0.745, 0.715),
+  out-sine: cubic-bezier(0.39, 0.575, 0.565, 1),
+  in-out-sine: cubic-bezier(0.445, 0.05, 0.55, 0.95),
+  in-quad: cubic-bezier(0.55, 0.085, 0.68, 0.53),
+  out-quad: cubic-bezier(0.25, 0.46, 0.45, 0.94),
+  in-out-quad: cubic-bezier(0.455, 0.03, 0.515, 0.955),
+  in-cubic: cubic-bezier(0.55, 0.055, 0.675, 0.19),
+  out-cubic: cubic-bezier(0.215, 0.61, 0.355, 1),
+  in-out-cubic: cubic-bezier(0.645, 0.045, 0.355, 1),
+  in-quart: cubic-bezier(0.895, 0.03, 0.685, 0.22),
+  out-quart: cubic-bezier(0.165, 0.84, 0.44, 1),
+  in-out-quart: cubic-bezier(0.77, 0, 0.175, 1),
+  in-quint: cubic-bezier(0.755, 0.05, 0.855, 0.06),
+  out-quint: cubic-bezier(0.23, 1, 0.32, 1),
+  in-out-quint: cubic-bezier(0.86, 0, 0.07, 1),
+  in-expo: cubic-bezier(0.95, 0.05, 0.795, 0.035),
+  out-expo: cubic-bezier(0.19, 1, 0.22, 1),
+  in-out-expo: cubic-bezier(1, 0, 0, 1),
+  in-circ: cubic-bezier(0.6, 0.04, 0.98, 0.335),
+  out-circ: cubic-bezier(0.075, 0.82, 0.165, 1),
+  in-out-circ: cubic-bezier(0.785, 0.135, 0.15, 0.86),
+  in-back: cubic-bezier(0.6, -0.28, 0.735, 0.045),
+  out-back: cubic-bezier(0.175, 0.885, 0.32, 1.275),
+  in-out-back: cubic-bezier(0.68, -0.55, 0.265, 1.55),
+  linear: cubic-bezier(0, 0, 1, 1),
+);

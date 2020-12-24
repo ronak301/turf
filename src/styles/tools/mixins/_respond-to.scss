@@ -1,0 +1,20 @@
+@mixin respond-to($bp, $breakpoints: $breakpoints) {
+  @if map-has-key($breakpoints, $bp) {
+    @media (min-width: #{map-get($breakpoints, $bp)}) {
+      @content;
+    }
+  }
+
+  @else {
+    @if (str-index($bp, 'px')) {
+      @media (min-width: #{$bp}) {
+        @content;
+      }
+    }
+
+    @else {
+      @warn 'Unfortunately, no value could be retrieved from `#{$bp}`. '
+        + 'Please make sure it is defined in `$breakpoints` map.';
+    }
+  }
+}

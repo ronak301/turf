@@ -1,0 +1,39 @@
+import { Meta, Story, Preview } from '@storybook/addon-docs/blocks';
+import Table from './Table';
+
+<Meta title="Components/Table" />
+
+export const TableStory = ({ ...args }) => (
+  <Table {...args} />
+);
+
+
+
+# Table
+
+---
+<Preview>
+  <Story name="default" args={{
+    data: [], columns: [{
+      id: 'name',
+      Header: 'Member Name',
+    }, { id: 'group', Header: 'Group' }, { id: 'view-time', Header: 'View Time' }, {
+      id: 'completion',
+      Header: 'Completion'
+    }]
+  }}>{TableStory.bind({})}</Story></Preview>
+
+
+
+### While Loading data
+<Preview>
+  <Story name="loading" args={{
+    loading: true,
+    data: [], columns: [{
+      id: 'name',
+      Header: 'Member Name',
+    }, { id: 'group', Header: 'Group' }, { id: 'view-time', Header: 'View Time' }, {
+      id: 'completion',
+      Header: 'Completion'
+    }]
+  }}>{TableStory.bind({})}</Story></Preview>

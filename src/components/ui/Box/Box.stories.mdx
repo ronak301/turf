@@ -1,0 +1,17 @@
+import { Meta, Story } from '@storybook/addon-docs/blocks';
+import { default as BoxContainer } from './Box';
+import { IconType } from '../forms/Button/Button';
+
+<Meta title="General/Box Container" />
+
+# Box Container
+
+---
+ <Story name="default"><BoxContainer
+  title="Sample Section"
+  subTitle="Sample Page"
+  primaryButtons={[{
+    text: 'ADD',
+    iconName: IconType.ADD,
+  }]}
+><h1>Lorem Ipsum</h1></BoxContainer></Story>

@@ -1,70 +1,103 @@
-# Getting Started with Create React App
+# Typescript boilerplate :fire:
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[Create React App v2](https://github.com/facebook/create-react-app) with modifications.
 
-## Available Scripts
+## Mentionable features
 
-In the project directory, you can run:
+- Typescript
+- Redux, reselect & redux-observable
+- Sentry
+- Jest together with [@testing-library](https://testing-library.com/docs/react-testing-library/intro)
+- Cypress
+- Prettier & eslint based on Airbnb config (with some modifications)
+- Lazy load router routes
+- CSS modules with Sass
+- react-helmet
+- Service worker
+- Absolute paths
+- Portals
+- Lodash
+- reselect
+- classnames
 
-### `yarn start`
+## Usage
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Recommended node version is defined in `.nvmrc`.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- `yarn install` - Install packages
+- `yarn start` - Start development server on port 8080
+- `yarn build` - Build project to the build folder
+- `yarn serve` - Serve the build folder on port 9090
+- `yarn analyze` - Analyzes build JavaScript bundles using the source maps
+- `yarn jest:run` - Run application with [Jest](https://jestjs.io/)
+- `yarn jest:watchAll` - Watch files for changes and rerun all tests when something changes with [Jest](https://jestjs.io/)
+- `yarn cypress:open` - Open [Cypress](https://www.cypress.io/) test runner
+- `yarn cypress:run` - Run [Cypress](https://www.cypress.io/) tests to completion
+- `yarn cypress:start` - Start development server together with `cypress:open`
+- `yarn cypress:ci` - Continuous integration together with `cypress:run`
+- `yarn prettier:report` - Report any [prettier](https://prettier.io/) issues
+- `yarn prettier:fix` - Fix any [prettier](https://prettier.io/) issues. Prettier is added to eslint, so we recommend to run `yarn eslint:fix`
+- `yarn eslint:report` - Report any [eslint](https://eslint.org/) issues
+- `yarn eslint:fix` - Fix any [eslint](https://eslint.org/) issues
 
-### `yarn test`
+## Component lifecycle
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+You should look at a component as its own lifecycle. Everything about it should be wrapped in the same folder, where the folder name is the components name, and then return itself. This is the structure and files that could/should be included:
 
-### `yarn build`
+```
+.
+├── components
+│   └── ...
+│       ├── Example
+│       │   ├── Example.module.scss   # Styling
+│       │   ├── Example.test.tsx      # Testing
+│       │   ├── Example.tsx           # Component
+│       │   └── index.ts              # Exports component
+│       │   ...
+│       └── index.ts                  # Exports every component within the folder
+└── ...
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## React
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Since React 16.8 we have a new way of writing components and you should adapt to this. So skip class components and use [hooks](https://reactjs.org/docs/hooks-intro.html) instead.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Use [Lighthouse](https://developers.google.com/web/tools/lighthouse/) to make sure the application has a good **Auditing Performance**.
 
-### `yarn eject`
+## Redux
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Using [ducks-modular-redux](https://github.com/erikras/ducks-modular-redux) with a small modification, just skip to prepend your constants with `my-app`.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Service worker
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+The [service worker](https://create-react-app.dev/docs/making-a-progressive-web-app/) is transformed into a component.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Why? Because we want to be able to inject a "New content is available" modal where it's possible to force reload the page.
 
-## Learn More
+Without this modal the user has to force reload the page themself or close all tabs with the current page.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Styling
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+The application should be created with a Mobile First architecture. This is very important, so make sure to respect it.
 
-### Code Splitting
+Styling folder is based on [ITCSS](https://www.xfive.co/blog/itcss-scalable-maintainable-css-architecture/) architecture. Colors, font sizes, spacings etc. are defined in `_variables.scss`, so make sure to use these. This will make the application scalable and consistent.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Specific component styling should *not* be created within the styling folder. Instead it should be a `.scss` file that's a sibling to the component, look at **Component lifecycle** above for better understanding.
 
-### Analyzing the Bundle Size
+A grid system is defined in `_grid.scss` and works very well with `_gutters.scss`. The grid and gutter system uses [BEM](https://en.bem.info/methodology/css/) methodology.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Make sure to use the mixin within `_respond-to.scss` when you're styling for various breakpoints. Breakpoints are then defined in `_variables.scss`. Follow this and the application will be consistent.
 
-### Making a Progressive Web App
+All *reusable* font styling should be appended in the `$font-styles` map within `_variables.scss`. This way elements can share styling without having to rewrite it every time and it's easy to make global changes. Read description of usage in `_variables.scss` above the definition of `$font-styles`. So is it okay to add `background-color: #123456;` to an element within this `$font-styles` map? **No**. It should only contain [fundamental text and font styling](https://developer.mozilla.org/en-US/docs/Learn/CSS/Styling_text/Fundamentals).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Environment variables
 
-### Advanced Configuration
+You must create [custom environment variables](https://create-react-app.dev/docs/adding-custom-environment-variables/) beginning with `REACT_APP_`. Any other variables except `NODE_ENV` will be ignored to avoid accidentally exposing a private key on the machine that could have the same name.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Browser support
 
-### Deployment
+Supported browsers are defined in `.browserslistrc` together with IE11 polyfills in `./src/index.tsx`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## Read more
 
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+You can learn more in the [Create React App documentation](https://create-react-app.dev/). 

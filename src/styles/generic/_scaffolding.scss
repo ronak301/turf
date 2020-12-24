@@ -1,0 +1,108 @@
+html {
+  font-size: 62.5%;
+  min-height: 100%;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+body {
+  font-family: map-get($font-families, arial);
+  line-height: map-get($line-heights, base);
+  @include get-font-styles(kramfors);
+  overflow-wrap: break-word;
+  background-color: map-get($colors, beta);
+
+  &::before,
+  &::after {
+    position: absolute;
+    left: -1337px;
+    visibility: hidden;
+    user-select: none;
+    pointer-events: none;
+    opacity: 0;
+    font-size: 0;
+    z-index: -1;
+  }
+
+  &::before {
+    content: '#{map-keys(map-sort-by-values($breakpoints))}';
+  }
+
+  &::after {
+    @each $breakpoint-key, $breakpoint-value in map-sort-by-values($breakpoints) {
+      @if ($breakpoint-key == 'xs') {
+        content: 'xs';
+      }
+
+      @include respond-to($breakpoint-key) {
+        content: '#{$breakpoint-key}';
+      }
+    }
+  }
+}
+
+hr {
+  border: 0;
+  border-bottom: 2px solid map-get($colors, alpha);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-bottom: map-get($spacings, xs) / 2;
+}
+
+hgroup,
+ul,
+ol,
+dl,
+blockquote,
+p,
+address,
+table,
+fieldset,
+figure,
+pre,
+hr {
+  margin-bottom: map-get($spacings, xs) * 1.5;
+}
+
+ul,
+ol,
+dd {
+  margin-left: map-get($spacings, md);
+}
+
+code {
+  background-color: rgb(240, 240, 240);
+  padding: 3px 6px;
+  @include get-font-styles(helsinki);
+  vertical-align: middle;
+  color: map-get($colors, primary);
+}
+
+a,
+area,
+button,
+[role='button'],
+input:not([type=range]),
+label,
+select,
+summary,
+textarea {
+  touch-action: manipulation;
+}
+
+body[class*='is-tabbing'] {
+  a:focus,
+  input:focus,
+  button:focus,
+  label:focus,
+  select:focus,
+  textarea:focus,
+  [role="button"]:focus {
+    outline: 5px auto -webkit-focus-ring-color !important;
+  }
+}

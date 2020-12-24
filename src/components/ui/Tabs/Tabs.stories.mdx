@@ -1,0 +1,35 @@
+import { Meta, Story, Preview } from '@storybook/addon-docs/blocks';
+import Tabs from './index';
+import Typography from '../Typography';
+
+<Meta title="Components/Tabs" />
+
+# Tabs
+
+---
+<Preview><Story name="default">
+  <Tabs
+    items={[{ id: 'member', label: 'Member' }, { id: 'content', label: 'Content' }, { id: 'group', label: 'Group' }]}>
+    <Tabs.Panel>
+      <Typography variant="heading2">Member</Typography>
+      Lorem ipsum dolor sit amet, consectetur adipiscing
+      elit. Praesent imperdiet lacus mi, vel imperdiet dui iaculis sit amet. Duis tristique, est eu condimentum cursus,
+      neque odio posuere orci, ac finibus eros lacus iaculis turpis. Etiam consequat mauris id imperdiet rhoncus. Aenean
+      malesuada elit ipsum, lacinia gravida mauris consequat et.
+    </Tabs.Panel>
+    <Tabs.Panel>
+      <Typography variant="heading2">Content</Typography>
+      Lorem ipsum dolor sit amet, consectetur adipiscing
+      elit. Praesent imperdiet lacus mi, vel imperdiet dui iaculis sit amet. Duis tristique, est eu condimentum cursus,
+      neque odio posuere orci, ac finibus eros lacus iaculis turpis. Etiam consequat mauris id imperdiet rhoncus. Aenean
+      malesuada elit ipsum, lacinia gravida mauris consequat et.
+    </Tabs.Panel>
+    <Tabs.Panel>
+      <Typography variant="heading2">Group</Typography>
+      Lorem ipsum dolor sit amet, consectetur adipiscing
+      elit. Praesent imperdiet lacus mi, vel imperdiet dui iaculis sit amet. Duis tristique, est eu condimentum cursus,
+      neque odio posuere orci, ac finibus eros lacus iaculis turpis. Etiam consequat mauris id imperdiet rhoncus. Aenean
+      malesuada elit ipsum, lacinia gravida mauris consequat et.
+    </Tabs.Panel>
+  </Tabs>
+</Story></Preview>

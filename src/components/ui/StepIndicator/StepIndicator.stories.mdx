@@ -1,0 +1,28 @@
+import StepIndicator from './index';
+import { ArgsTable, Description, Meta, Story, } from '@storybook/addon-docs/blocks';
+
+<Meta title="General/StepIndicator" component={StepIndicator}
+      argTypes={{
+        stepCount: { control: { type: 'range', min: 1 } },
+        currentStep: { control: { type: 'range', min: 1 } },
+      }} />
+
+# Step-Indicator
+
+---
+
+<Description>Step-Indicator</Description>
+
+<Story name="default"
+       argsTypes={{
+         stepCount: {
+           control: 'range'
+         }
+       }}
+       args={{ stepKnobSize: 12, stepCount: 5, currentStep: 3, width: '100%' }}>
+  {StepIndicator.bind({})}
+</Story>
+
+
+### Props
+<ArgsTable of={StepIndicator} />
